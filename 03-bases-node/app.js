@@ -9,9 +9,7 @@ if (!argv.base) argv.base = argv.b
 let command = argv._[0];
 let path = 'tables/';
 let fileName = `tabla-${argv.base}-al-${argv.limit}.txt`
-console.log(`${fileName}`);
-// console.log(argv);
-// return
+
 switch (command) {
     case 'list':
         listTable(argv.base, argv.limit)
