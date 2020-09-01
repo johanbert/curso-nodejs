@@ -1,3 +1,4 @@
 01*
 02*
 03-bases-node/tables/*.txt
+node_modules/

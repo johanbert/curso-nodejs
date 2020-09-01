@@ -1,7 +1,16 @@
 const fs = require('fs');
-const { argv } = require('process');
+const colors = require('colors');
 
-let createFile = (base, path, fileName) => {
+let listTable = (base, limit = 10) => {
+    console.log('===============');
+    console.log(`Tabla de ${base}`.green);
+    console.log('===============');
+    for (let i = 1; i <= limit; i++) {
+        console.log(`${base} * ${ i } = ${base *i}\n`);
+    }
+}
+
+let createFile = (base, limit = 10, path, fileName) => {
 
     return new Promise((resolve, reject) => {
 
@@ -11,7 +20,7 @@ let createFile = (base, path, fileName) => {
         }
 
         let data = '';
-        for (let i = 1; i <= 10; i++) {
+        for (let i = 1; i <= limit; i++) {
             data += `${base} * ${ i } = ${base *i}\n`;
         }
 
@@ -29,5 +38,8 @@ let createFile = (base, path, fileName) => {
 
 }
 
-module.exports = { createFile }
+module.exports = {
+        createFile,
+        listTable
+    }
     // console.log(argv)

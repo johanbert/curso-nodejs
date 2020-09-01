@@ -1,33 +1,27 @@
 // requireds
 // despues de una const o let + {}, es una destructuracion
-const { createFile } = require('./functions/multiply');
+const argv = require('./config/yargs').argv;
+const colors = require('colors/safe');
+const { createFile, listTable } = require('./functions/multiply');
 
-// let base = '15';
+if (!argv.base) argv.base = argv.b
 
-let argv = process.argv;
-let parameter = argv[2]
-let base = parameter.split('=')[1]
+let command = argv._[0];
 let path = 'tables/';
-let fileName = `tabla-${base}.txt`
+let fileName = `tabla-${argv.base}-al-${argv.limit}.txt`
+console.log(`${fileName}`);
+// console.log(argv);
+// return
+switch (command) {
+    case 'list':
+        listTable(argv.base, argv.limit)
+        break;
 
-createFile(base, path, fileName)
-
-.then(file => console.log(`Se ha creado el archivo ${ file }`))
-    .catch((err) => console.log(err));
-
-// const { creararchivo } = require('./functions/multiply');
-
-//let comando = argv._[0];
-// switch (comando) {
-//     case 'listar':
-//         console.log('listar');
-//         break;
-
-//     case 'listar':
-//         console.log('crear');
-//         break;
-
-//     default:
-//         console.log('comando no reconocido');
-
-// }
+    case 'create':
+        createFile(argv.base, argv.limit, path, fileName)
+            .then(file => console.log(`Se ha creado el archivo ${ colors.green(file) }`))
+            .catch((err) => console.log(err));
+        break;
+    default:
+        console.log('Comando no reconocido');
+}
