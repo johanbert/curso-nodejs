@@ -1,4 +1,6 @@
 01*
 02*
 03-bases-node/tables/*.txt
+04-tasks-to-do/node_modules/
+05-weather-world/node_modules/
 node_modules/
